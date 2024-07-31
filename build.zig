@@ -30,10 +30,13 @@ pub fn build(b: *std.Build) void {
     // location when the user invokes the "install" step (the default step when
     // running `zig build`).
     b.addModule("dotenv", .{
+        .root_source_file = b.path("src/root.zig"),
         .optimize = optimize,
         .target = target,
         .strip = true,
     });
+
+    
 
     // const exe = b.addExecutable(.{
     //     .name = "dotenv",
