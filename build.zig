@@ -24,10 +24,16 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    b.installArtifact(lib);
+
     // This declares intent for the library to be installed into the standard
     // location when the user invokes the "install" step (the default step when
     // running `zig build`).
-    b.installArtifact(lib);
+    b.addModule("dotenv", .{
+        .optimize = optimize,
+        .target = target,
+        .strip = true,
+    });
 
     // const exe = b.addExecutable(.{
     //     .name = "dotenv",
